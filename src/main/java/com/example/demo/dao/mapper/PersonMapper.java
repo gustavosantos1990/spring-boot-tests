@@ -1,8 +1,10 @@
-package com.example.demo;
+package com.example.demo.dao.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
+
+import com.example.demo.model.Person;
 
 public class PersonMapper implements RowMapper<Person> {
 	public Person mapRow(ResultSet rs, int rowNum) throws SQLException {

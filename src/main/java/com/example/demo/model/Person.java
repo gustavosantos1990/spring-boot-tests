@@ -1,6 +1,5 @@
-package com.example.demo;
+package com.example.demo.model;
 
-import java.util.Arrays;
 import java.util.Date;
 
 //import javax.persistence.Entity;
@@ -11,26 +10,26 @@ import javax.validation.constraints.NotNull;
 //@Entity
 public class Person {
 
-	//@Id
-	//@GeneratedValue
+	// @Id
+	// @GeneratedValue
 	private Long id;
-	
+
 	@NotNull
 	private String name;
-	
+
 	@NotNull
 	private Date birth;
-	
+
 	private String address;
-	
+
 	private String phone;
-	
+
 	private String email;
-	
+
 	private String profession;
-	
+
 	public Person() {
-		
+
 	}
 
 	public Long getId() {
@@ -119,14 +118,12 @@ public class Person {
 			return false;
 		return true;
 	}
-	
+
 	public Object[] loadSaveParameters() {
-		Object[] result = {this.name, this.birth, this.address, this.phone, this.email, this.profession};
-		return result;
+		return new Object[] { this.name, this.birth, this.address, this.phone, this.email, this.profession };
 	}
-	
+
 	public Object[] loadUpdateParameters() {
-		Object[] result = {this.name, this.birth, this.address, this.phone, this.email, this.profession, this.id};
-		return result;
+		return new Object[] { this.name, this.birth, this.address, this.phone, this.email, this.profession, this.id };
 	}
 }

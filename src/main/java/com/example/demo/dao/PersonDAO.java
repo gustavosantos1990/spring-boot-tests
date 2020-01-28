@@ -1,25 +1,27 @@
-package com.example.demo;
+package com.example.demo.dao;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+
+import com.example.demo.dao.mapper.PersonMapper;
+import com.example.demo.model.Person;
 
 @Component
 public class PersonDAO {
 
-	private final JdbcTemplate jdbcTemplate;
+	@Autowired
+	@Qualifier("storeJT")
+	private JdbcTemplate jdbcTemplate;
 
 	private final String QUERY_FIND_ALL = "SELECT * FROM person;";
 	private final String QUERY_FIND_BY_ID = "SELECT * FROM person WHERE id = ?;";
 	private final String QUERY_SAVE = "INSERT INTO person (name, birth, address, phone, email, profession) VALUES (?, ?, ?, ?, ?, ?);";
 	private final String QUERY_UPDATE = "UPDATE person SET name = ?, birth = ?, address = ?, phone = ?, email = ?, profession = ? WHERE id = ?;";
 	private final String QUERY_DELETE = "DELETE FROM person WHERE id = ?;";
-
-	public PersonDAO(JdbcTemplate jdbcTemplate) {
-		super();
-		this.jdbcTemplate = jdbcTemplate;
-	}
 
 	public List<Person> findAll() {
 		return jdbcTemplate.query(QUERY_FIND_ALL, new PersonMapper());

@@ -1,15 +1,9 @@
-package com.example.demo;
+package com.example.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 
-@Entity
 public class Book {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
 
@@ -39,6 +33,14 @@ public class Book {
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", name=" + name + "]";
+	}
+
+	public Object[] loadSaveParameters() {
+		return new Object[] {this.name}; 
+	}
+	
+	public Object[] loadUpdateParameters() {
+		return new Object[] {this.name, this.id}; 
 	}
 
 }
